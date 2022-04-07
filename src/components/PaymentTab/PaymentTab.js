@@ -3,6 +3,7 @@ import Card from 'react-credit-cards'
 import './PaymentTab.css'
 import jwt_decode from 'jwt-decode'
 import Swal from 'sweetalert2'
+import {useHistory} from 'react-router-dom'
 
 import {
     formatCreditCardNumber,
@@ -11,7 +12,7 @@ import {
     formatFormData
 } from './utils'
 import 'react-credit-cards/es/styles-compiled.css'
-
+let history = useHistory();
 export default class App extends React.Component {
         state = {
             number: '',
@@ -88,7 +89,7 @@ export default class App extends React.Component {
             e.preventDefault()
             
             localStorage.setItem('paymentData', JSON.stringify(this.state.token))
-            window.location.href = '/getTicket'
+            history.push('/getTicket')
         }
 
         renderNamesOfPassenger = () => {
