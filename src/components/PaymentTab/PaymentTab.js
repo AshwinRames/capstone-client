@@ -4,6 +4,7 @@ import './PaymentTab.css'
 import jwt_decode from 'jwt-decode'
 import Swal from 'sweetalert2'
 import history from '../../history';
+import * as apiCall from './mailApi'
 
 import {
     formatCreditCardNumber,
@@ -86,12 +87,26 @@ export default class App extends React.Component {
             })
             this.form.reset()
         }
-
+        mailsend =() => {
+            const data={
+                email:localStorage.getItem("email"),
+                username :localStorage.getItem("nameData"),
+                from : localStorage.getItem("start"),
+                to : localStorage.getItem("destination"),
+                allo : localStorage.getItem("reservedSeats"),
+                date : localStorage.getItem("date"),
+            }
+    
+            console.log("mail",data)
+            apiCall.getMailApi(data);
+             
+        }
         moveToTicketPage = e => {
             e.preventDefault()
-            
+          
             localStorage.setItem('paymentData', JSON.stringify(this.state.token))
             history.push('/getTicket')
+            this.mailsend();
         }
 
         renderNamesOfPassenger = () => {
