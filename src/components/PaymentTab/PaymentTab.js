@@ -3,7 +3,7 @@ import Card from 'react-credit-cards'
 import './PaymentTab.css'
 import jwt_decode from 'jwt-decode'
 import Swal from 'sweetalert2'
-import {useHistory} from 'react-router-dom'
+import history from '../../history';
 
 import {
     formatCreditCardNumber,
@@ -12,8 +12,9 @@ import {
     formatFormData
 } from './utils'
 import 'react-credit-cards/es/styles-compiled.css'
-let history = useHistory();
+
 export default class App extends React.Component {
+    
         state = {
             number: '',
             name: '',
@@ -27,6 +28,7 @@ export default class App extends React.Component {
 
         componentDidMount() {
             const tok = sessionStorage.getItem('authToken')
+           
             const decoded = jwt_decode(tok)
             this.setState({
                 token: decoded.user

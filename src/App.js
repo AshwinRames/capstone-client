@@ -8,11 +8,12 @@ import Signup from './components/Login-Signup/Signup'
 import Profile from './components/Profile/Profile'
 import TicketPage from './components/TicketPage/TicketPage'
 import './App.css';
+import history from './history';
 
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Router history={history}>
         <Switch>
           <Route path="/" exact render={props => <Homepage {...props} />} />
           <Route path="/login" render={props => <LogOrsign {...props} />} />
